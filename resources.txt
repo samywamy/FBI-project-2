@@ -1,0 +1,10 @@
+RESOURCES
+
+Spoonacular API
+https://spoonacular.com/food-api/apps
+
+Spoonacular on RapidAPI
+https://rapidapi.com/spoonacular/api/Recipe%20-%20Food%20-%20Nutrition/pricing
+
+Find Recipes by Ingredients
+https://market.mashape.com/spoonacular/recipe-food-nutrition#find-by-ingredients

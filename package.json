@@ -1,0 +1,26 @@
+{
+  "name": "project-2",
+  "version": "1.0.0",
+  "description": "Recipe App",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Samantha Ng",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "*",
+    "consolidate": "*",
+    "cookie-parser": "^1.4.3",
+    "dust": "*",
+    "dustjs-helpers": "*",
+    "dustjs-linkedin": "*",
+    "express": "*",
+    "express-react-views": "^0.10.5",
+    "js-sha256": "^0.9.0",
+    "method-override": "^2.3.10",
+    "pg": "*",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1"
+  }
+}
