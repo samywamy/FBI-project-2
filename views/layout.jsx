@@ -1,19 +1,21 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Revercipes</title>
-	<link rel="stylesheet" href="/css/bootstrap.css">
-	<link rel="stylesheet" href="/css/style.css">
+﻿var React = require('react');
 
-</head>
-<body>
-	<div class="container">
-		<div class="row">
-			<div class="col-md-offset-2 col-md-7">
-			
-	{+body /}
+class LayoutContainer extends React.Component {
+  render() {
+  	return (
+         <html>
+      		<head>
+    		    <link rel="stylesheet" type="text/css" href="/style.css"/>
 
-	<script src="https://images.vexels.com/media/users/3/143061/isolated/preview/aaf71ed4e387a6838e1c521fbecde77a-banana-icon-fruit-by-vexels.png"></script>
-	<script src="/js/bootstrap.js"></script>
-</body>
-</html>
+      			<title>HELLO</title>
+      		</head>
+      		<body>
+                {this.props.children}
+                <script src="script.js"></script>
+      		</body>
+      	</html> 
+    );
+  }
+}
+
+module.exports = LayoutContainer;
