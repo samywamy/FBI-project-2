@@ -13,8 +13,12 @@ const db = require('./db');
 // Init express app
 const app = express();
 
+
+
+
 // Set up middleware
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.use(cookieParser());
 
@@ -31,7 +35,9 @@ app.use(express.static('public'));
 // AJAX
 
 
-
+// Loads module.exports function in routes.js
+// needs to be started after middleware otherwise JSON parsing will fail in POSTs
+require('./routes.js')(app, db);
 
 
 
