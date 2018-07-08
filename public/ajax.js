@@ -16,7 +16,7 @@ function loadRandomRecipe() {
 
 	let xhr = new XMLHttpRequest();
 	xhr.open('GET','https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/random', true);
-	xhr.setRequestHeader('X-Mashape-Key','***REMOVED***');
+	xhr.setRequestHeader('X-Mashape-Key','***removed****');
 
 	xhr.onload = function() {
 		if (this.status == 200) {
@@ -43,7 +43,7 @@ function loadSearchResults() {
     let xhr = new XMLHttpRequest();
     xhr.open('GET','https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients' +
         '?fillIngredients=true&ingredients=' + encodeURIComponent(input), true);
-    xhr.setRequestHeader('X-Mashape-Key','***REMOVED***');
+    xhr.setRequestHeader('X-Mashape-Key','***removed****');
 
     xhr.onload = function() {
         if (this.status == 200) {
@@ -122,7 +122,7 @@ function postRecipe(idx) {
     let xhr = new XMLHttpRequest();
     xhr.open('GET','https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/' + 
         recipes[idx].id + '/information?includeNutrition=true', true);
-    xhr.setRequestHeader('X-Mashape-Key','***REMOVED***');
+    xhr.setRequestHeader('X-Mashape-Key','***removed****');
 
     xhr.onload = function() {
         if (this.status == 200) {
