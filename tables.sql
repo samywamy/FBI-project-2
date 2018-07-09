@@ -1,12 +1,20 @@
 -- DROP TABLE users;
 
+CREATE TABLE api (
+    key VARCHAR PRIMARY KEY
+);
+
+CREATE TABLE request_times (
+	timestamp TIMESTAMP
+);
+
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
 	email VARCHAR,
     password_hash VARCHAR
 );
 
-CREATE TABLE user_recipes (
+CREATE TABLE user_created_recipes (
 	id SERIAL PRIMARY KEY,
 	user_id INTEGER,
 	title VARCHAR,
