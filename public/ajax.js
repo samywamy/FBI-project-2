@@ -1,5 +1,5 @@
 document.getElementById('random-button').addEventListener('click', loadRandomRecipe);
-document.getElementById('search-button').addEventListener('click', loadSearchResults);
+// document.getElementById('search-button').addEventListener('click', loadSearchResults);
 
 const recipeDiv = document.getElementById('recipes');
 

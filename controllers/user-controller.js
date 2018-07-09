@@ -1,6 +1,6 @@
 module.exports = function(db) {
 
-    const usersModel = require('../models/user-models.js')(db);
+    const usersModel = require('../models/user-model.js')(db);
     const sha256 = require('js-sha256');
 
 
@@ -48,7 +48,7 @@ module.exports = function(db) {
         login: login,
         loginForm: loginForm
     };
-}
+};
 
 
 
