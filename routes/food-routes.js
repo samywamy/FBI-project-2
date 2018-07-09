@@ -5,6 +5,14 @@ module.exports = (app, db) => {
 	app.post('/recipe', food.showRecipe); // keep this function but with different endpoint for random recipe
 // 	app.post('/recipe/random', food.showRecipe); // show random recipe
 // 	app.post('/search')
+
+	app.get('/recipe/random', food.showRandomRecipe);
+
+
+	app.post('/recipe/search', food.showSearchResults);
+
+
+	app.get('/recipe/:id/load', food.loadApiRecipe);
 };
 
 
