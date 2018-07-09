@@ -1,4 +1,5 @@
 var React = require("react");
+var LayoutContainer = require('../layout.jsx');
 
 class Recipe extends React.Component {
   render() {
@@ -17,9 +18,7 @@ class Recipe extends React.Component {
     });  
 
     return (
-      <html>
-        <head />
-        <body>
+      <LayoutContainer>
           <div>
             <h1>{this.props.kuku.title}</h1>
             <img src={this.props.kuku.image} />
@@ -28,8 +27,7 @@ class Recipe extends React.Component {
             Ingredients:{ingredients}
             Steps:{instructions}
           </div>
-        </body>
-      </html>
+      </LayoutContainer>
     );
   }
 }
