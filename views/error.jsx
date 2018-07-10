@@ -1,11 +1,12 @@
 var React = require("react");
+var LayoutContainer = require('./layout.jsx');
 
 class Error extends React.Component {
   render() {
     return (
-
-        <div>{this.props.errorMsg}</div>
-
+    	<LayoutContainer>
+        	<div>{this.props.errorMsg}</div>
+        </LayoutContainer>
     );
   }
 }

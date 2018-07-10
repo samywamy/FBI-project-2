@@ -1,6 +1,7 @@
 module.exports = function(db) {
 
 	const checkApiCalls = (successCallback, errorCallback) => {
+
 		const queryString = "SELECT COUNT(*) AS number FROM request_times WHERE timestamp >= NOW() - '1 day'::INTERVAL";
 	
 		db.query(queryString, (err, result) => {
@@ -19,6 +20,7 @@ module.exports = function(db) {
 
 
 	const storeRequestTimes = (successCallback, errorCallback) => {
+
 		const queryString = "INSERT INTO request_times (timestamp) VALUES (NOW())";
 
 		db.query(queryString, (err, result) => {
@@ -85,15 +87,26 @@ module.exports = function(db) {
 	};
 
 
-	// const getUserRecipe = () => {
-	// 	const queryString = 'SELECT * FROM user_created_recipes WHERE user_id = $1';
-	// 	const values = [id];
+
+	const showUserRecipe = (id, userId, successCallback, errorCallback) => {
+
+		const queryString = "SELECT * FROM user_created_recipes WHERE id = $1 AND user_id = $2";
+		const values = [id, userId];
 		
-
-	// 	db.query(queryString, values, (err, result) => {
-
-	// 	});
-	// };
+		const queryCallback = (err, result) => {
+			if (err) {
+				errorCallback(err);
+            } else {
+                if (result.rows.length == 0) {
+	                errorCallback("Recipe not found.");
+				} else {
+					successCallback(result.rows[0]);
+				}
+			}	
+		};
+		
+		db.query(queryString, values, queryCallback);		
+	};
 
 
 
@@ -108,7 +121,8 @@ module.exports = function(db) {
 		storeRequestTimes: storeRequestTimes,
 		withApiKey: withApiKey,
 		storeUserRecipe: storeUserRecipe,
-		storeApiRecipe: storeApiRecipe
+		storeApiRecipe: storeApiRecipe,
+		showUserRecipe: showUserRecipe
 	};
 
 };

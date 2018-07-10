@@ -167,18 +167,19 @@ module.exports = (db) => {
 			return false;
 		}
 	};
-
-
+	// ==============================
+	// STILL HAVE TO MAKE LOGINS SAFE
+	// ==============================
 
 	const saveApiRecipe = (request, response) => {
-		let id = (request.params.id);
+		let id = request.params.id;
 		let recipe = cachedApiRecipes[id];
 		let userId = request.cookies.user;
 		let errorCallback = (err) => {
 			response.render('error', {errorMsg: err});
 		};
 		let successCallback = () => {
-			response.redirect('/');
+			response.redirect('/'); //CHANGE THIS TO profile
 		};
 
 		if (userId == undefined) {
@@ -190,11 +191,24 @@ module.exports = (db) => {
 		}
 	};
 
-	// const loadUserRecipe = (request) => {
-	// 	let params = request.body;
-	// 	let id = params.user_id
-	// };
 
+
+	const loadUserRecipe = (request, response) => {
+		let id = request.params.id;
+		let userId = request.cookies.user;
+		let errorCallback = (err) => {
+			response.render('error', {errorMsg: err});
+		};
+		let successCallback = (result) => {
+			response.render('food/userRecipe', {kuku: result});
+		};
+
+		if (userId == undefined) {
+			response.render('user/login');
+		} else {
+			foodModel.showUserRecipe(id, userId, successCallback, errorCallback);
+		}
+	};
 
 
 
@@ -206,8 +220,8 @@ module.exports = (db) => {
 		loadApiRecipe: loadApiRecipe,
 		createRecipeForm: createRecipeForm,
 		createRecipe: createRecipe,
-		saveApiRecipe: saveApiRecipe
-		// loadUserRecipe: loadUserRecipe
+		saveApiRecipe: saveApiRecipe,
+		loadUserRecipe: loadUserRecipe
 	};
 
 

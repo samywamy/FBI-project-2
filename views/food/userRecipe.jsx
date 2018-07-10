@@ -8,12 +8,9 @@ class UserRecipe extends React.Component {
     return (
       <LayoutContainer>
           <div>
-            <h1>{this.props.kuku.title}</h1>
-            <img src={this.props.kuku.image} />
-            <p>Ready in: {this.props.kuku.readyInMinutes} minutes</p>
-            <p>Servings: {this.props.kuku.servings}</p>
-            Ingredients:{ingredients}
-            Steps:{instructions}
+            <h1>Title: {this.props.kuku.title}</h1>
+            <p>Ingredients: {this.props.kuku.ingredients}</p>
+            <p>Steps: {this.props.kuku.directions}</p>
           </div>
       </LayoutContainer>
     );
