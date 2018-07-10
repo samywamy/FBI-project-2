@@ -17,6 +17,7 @@ module.exports = function(db) {
 	};
 
 
+
 	const storeRequestTimes = (successCallback, errorCallback) => {
 		const queryString = "INSERT INTO request_times (timestamp) VALUES (NOW())";
 
@@ -28,6 +29,7 @@ module.exports = function(db) {
 			}
 		});
 	};
+
 
 
 	const withApiKey = (successCallback, errorCallback) => {
@@ -47,6 +49,7 @@ module.exports = function(db) {
 	};
 
 
+
 	const storeUserRecipe = (id, recipeData, successCallback, errorCallback) => {
 
 		const queryString = "INSERT INTO user_created_recipes (user_id, title, ingredients, directions) VALUES ($1, $2, $3, $4)";
@@ -62,6 +65,25 @@ module.exports = function(db) {
 		
 		db.query(queryString, values, queryCallback);		
 	};
+
+
+
+	// const getUserRecipe = () => {
+	// 	const queryString = 'SELECT * FROM user_created_recipes WHERE user_id = $1';
+	// 	const values = [id];
+		
+
+	// 	db.query(queryString, values, (err, result) => {
+
+	// 	});
+	// };
+
+
+
+
+
+
+
 
 
 	return {

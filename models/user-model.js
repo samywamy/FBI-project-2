@@ -14,6 +14,8 @@ module.exports = function(db) {
         });
 	};
 
+
+
     const loginUser = (email, password, successCallback, errorCallback) => {
 
     	const queryString = 'SELECT * FROM users where email = $1 AND password_hash = $2';
@@ -31,6 +33,7 @@ module.exports = function(db) {
             }
 	    });
 	};
+
 
 
     return {

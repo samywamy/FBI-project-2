@@ -8,6 +8,8 @@ module.exports = function(db) {
         response.render('user/register');
     };
 
+
+
     const register = (request, response) => {
     	let params = request.body;
         let email = params.email;
@@ -21,6 +23,8 @@ module.exports = function(db) {
         };
         usersModel.addUser(email, password, successCallback, errorCallback);
     };
+
+
 
     const login = (request, response) => {
     	let params = request.body;
@@ -38,9 +42,15 @@ module.exports = function(db) {
         usersModel.loginUser(email, password, successCallback, errorCallback);
     };
 
+
+
+
+
     const loginForm = (request, response) => {
     	response.render('user/login');
     };
+
+
 
     return {
         newForm: newForm,
