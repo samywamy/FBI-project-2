@@ -2,10 +2,9 @@ module.exports = (db) => {
 
 	const cached = require('./cachedapicalls.js')();
 	const useCache = true;
-
 	const requestModule = require('request');
-
 	const foodModel = require('../models/food-model.js')(db);
+	const cachedApiRecipes = {};
 
 
 	const showRecipe = (request, response) => {
@@ -59,8 +58,14 @@ module.exports = (db) => {
 	const loadApiRecipe = (request, response) => {
 		let id = (request.params.id);
 
+		if (cachedApiRecipes.id !== undefined) {
+			response.render('food/recipe', {kuku: cachedApiRecipes.id});
+			return;
+		}
+
 		let successCallback = (api_key) => {
 			if (useCache) {
+				cachedApiRecipes[cached.recipeWithNutrients.id] = cached.recipeWithNutrients;
 				response.render('food/recipe', {kuku: cached.recipeWithNutrients});
 				return;
 			}
@@ -76,7 +81,7 @@ module.exports = (db) => {
 			requestModule(request_obj, function (error, req_response, json) {
 				if (!error && req_response.statusCode == 200) {
 					foodModel.storeRequestTimes(function() {}, function() {});
-					// console.log(res);
+					cachedApiRecipes[json.id] = json;
 					response.render('food/recipe', {kuku: json});
 				} else {
 					console.log(error);
@@ -97,6 +102,7 @@ module.exports = (db) => {
 	const showRandomRecipe = (request, response) => {
 		let successCallback = (api_key) => {
 			if (useCache) {
+				cachedApiRecipes[cached.randomRecipe.recipes[0].id] = cached.randomRecipe.recipes[0];
 				response.render('food/recipe', {kuku: cached.randomRecipe.recipes[0]});
 				return;
 			}
@@ -112,7 +118,7 @@ module.exports = (db) => {
 			requestModule(request_obj, function (error, req_response, json) {
 				if (!error && req_response.statusCode == 200) {
 					foodModel.storeRequestTimes(function() {}, function() {});
-					// console.log(res);
+					cachedApiRecipes[json.recipes[0].id] = json.recipes[0];
 					response.render('food/recipe', {kuku: json.recipes[0]});
 				} else {
 					console.log(error);
@@ -164,6 +170,18 @@ module.exports = (db) => {
 
 
 
+	const saveApiRecipe = (request) => {
+
+	}
+
+	// const loadUserRecipe = (request) => {
+	// 	let params = request.body;
+	// 	let id = params.user_id
+	// };
+
+
+
+
 
 	return {
 		showRecipe: showRecipe,
@@ -171,7 +189,8 @@ module.exports = (db) => {
 		showSearchResults: showSearchResults,
 		loadApiRecipe: loadApiRecipe,
 		createRecipeForm: createRecipeForm,
-		createRecipe: createRecipe
+		createRecipe: createRecipe,
+		// loadUserRecipe: loadUserRecipe
 	};
 
 
