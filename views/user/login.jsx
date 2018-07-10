@@ -7,7 +7,6 @@ class Login extends React.Component {
     	<LayoutContainer>
 	    	<div>
 	    		<form action="/login" method="POST">
-	    			<br /><br /><br /><br />
 	    			<input name="email" type="text" placeholder="Email" />
 
 	    			<input name="password" type="text" placeholder="Password"/>
@@ -16,6 +15,11 @@ class Login extends React.Component {
 	    		</form>
 
 	    		<p><a href="/register" class="text-muted">No account? Sign up.</a></p>
+
+	    		<form action="/logout" method="GET">
+	    			<input name="submit" type="submit" value="Logout" class="buttons"/ >
+	    		</form>
+
 
 	    	</div>
     	</LayoutContainer>

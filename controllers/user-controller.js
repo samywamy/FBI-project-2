@@ -37,11 +37,11 @@ module.exports = function(db) {
             response.redirect('/');        	
         };
         let errorCallback = (err) => {
-        	response.redirect('/login');
+            response.render('error', {errorMsg: err});
+
         };
         usersModel.loginUser(email, password, successCallback, errorCallback);
     };
-
 
 
 
@@ -52,11 +52,20 @@ module.exports = function(db) {
 
 
 
+    const logout = (request, response) => {
+        response.clearCookie('user');
+        response.clearCookie('logged_in');
+        response.redirect('/');
+    };
+
+
+
     return {
         newForm: newForm,
         register: register,
         login: login,
-        loginForm: loginForm
+        loginForm: loginForm,
+        logout: logout
     };
 };
 

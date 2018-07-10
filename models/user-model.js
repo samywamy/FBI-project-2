@@ -26,7 +26,7 @@ module.exports = function(db) {
                 errorCallback(err);
             } else {
                 if (result.rows.length == 0) {
-	                errorCallback(err);
+	                errorCallback("Login failed. Please try again.");
                 } else {
 	                successCallback(result);
                 }
