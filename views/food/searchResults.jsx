@@ -6,8 +6,8 @@ class SearchResults extends React.Component {
     	const tableRows = this.props.kuku.map(recipe => {
         return (
             <tr>
-              <td><img src={recipe.image} /></td>
-              <td><a href={'/recipe/' + recipe.id + '/load'}>{recipe.title}</a></td>
+              <td><a href={'/recipe/' + recipe.id + '/load'}><img src={recipe.image} /></a></td>
+              <td><a class ="text-dark" href={'/recipe/' + recipe.id + '/load'}>{recipe.title}</a></td>
             </tr>
           );
       });

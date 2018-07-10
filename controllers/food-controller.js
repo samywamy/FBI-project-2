@@ -16,107 +16,107 @@ module.exports = (db) => {
 	};
 
 
-    const showSearchResults = (request, response) => {
+	const showSearchResults = (request, response) => {
 
-        let searchTerms = request.body.searchbar;
+		let searchTerms = request.body.searchbar;
 
-        let successCallback = (api_key) => {
-        	if (useCache) {
-	            response.render('food/searchResults', {kuku: cached.searchResults});
-	            return;
-        	}
+		let successCallback = (api_key) => {
+			if (useCache) {
+				response.render('food/searchResults', {kuku: cached.searchResults});
+				return;
+			}
 
-            const request_obj = {
-                headers: {
-                  'X-Mashape-Key': api_key
-                },
-                uri: 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients' +
-                '?fillIngredients=true&ingredients=' + encodeURIComponent(searchTerms),
-                method: 'GET',
-                json: true
-            };
-            requestModule(request_obj, function (error, req_response, json) {
-                if (!error && req_response.statusCode == 200) {
-                    foodModel.storeRequestTimes(function() {}, function() {});
-                    // console.log(res);
-                    response.render('food/searchResults', {kuku: json});
-                } else {
-                    console.log(error);
-                }
-            });
-        };
-        let errorCallback = (err) => {
-            console.log(err);
-            response.render('error', {errorMsg: err});
-        };
+			const request_obj = {
+				headers: {
+				  'X-Mashape-Key': api_key
+				},
+				uri: 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients' +
+				'?fillIngredients=true&ingredients=' + encodeURIComponent(searchTerms),
+				method: 'GET',
+				json: true
+			};
+			requestModule(request_obj, function (error, req_response, json) {
+				if (!error && req_response.statusCode == 200) {
+					foodModel.storeRequestTimes(function() {}, function() {});
+					// console.log(res);
+					response.render('food/searchResults', {kuku: json});
+				} else {
+					console.log(error);
+				}
+			});
+		};
+		let errorCallback = (err) => {
+			console.log(err);
+			response.render('error', {errorMsg: err});
+		};
 
-        foodModel.withApiKey(successCallback, errorCallback);        
+		foodModel.withApiKey(successCallback, errorCallback);        
 
-    };
+	};
 
 
 
-    const loadApiRecipe = (request, response) => {
-        let id = (request.params.id);
+	const loadApiRecipe = (request, response) => {
+		let id = (request.params.id);
 
-        let successCallback = (api_key) => {
-        	if (useCache) {
-	            response.render('food/recipe', {kuku: cached.recipeWithNutrients});
-	            return;
-        	}
+		let successCallback = (api_key) => {
+			if (useCache) {
+				response.render('food/recipe', {kuku: cached.recipeWithNutrients});
+				return;
+			}
 
-            const request_obj = {
-                headers: {
-                  'X-Mashape-Key': api_key
-                },
-                uri: 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/' + id + '/information?includeNutrition=true',
-                method: 'GET',
-                json: true
-            };
-            requestModule(request_obj, function (error, req_response, json) {
-                if (!error && req_response.statusCode == 200) {
-                    foodModel.storeRequestTimes(function() {}, function() {});
-                    // console.log(res);
-                    response.render('food/recipe', {kuku: json});
-                } else {
-                    console.log(error);
-                }
-            });
-        };
-        let errorCallback = (err) => {
-            console.log(err);
-            response.render('error', {errorMsg: err});
-        };
+			const request_obj = {
+				headers: {
+				  'X-Mashape-Key': api_key
+				},
+				uri: 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/' + id + '/information?includeNutrition=true',
+				method: 'GET',
+				json: true
+			};
+			requestModule(request_obj, function (error, req_response, json) {
+				if (!error && req_response.statusCode == 200) {
+					foodModel.storeRequestTimes(function() {}, function() {});
+					// console.log(res);
+					response.render('food/recipe', {kuku: json});
+				} else {
+					console.log(error);
+				}
+			});
+		};
+		let errorCallback = (err) => {
+			console.log(err);
+			response.render('error', {errorMsg: err});
+		};
 
-        foodModel.withApiKey(successCallback, errorCallback);        
-    }
+		foodModel.withApiKey(successCallback, errorCallback);        
+	}
 
 
 
 
 	const showRandomRecipe = (request, response) => {
 		let successCallback = (api_key) => {
-        	if (useCache) {
+			if (useCache) {
 				response.render('food/recipe', {kuku: cached.randomRecipe.recipes[0]});
 				return;
-        	}
+			}
 
 			const request_obj = {
-			    headers: {
-			      'X-Mashape-Key': api_key
-			    },
-			    uri: 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/random',
-			    method: 'GET',
-			    json: true
+				headers: {
+				  'X-Mashape-Key': api_key
+				},
+				uri: 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/random',
+				method: 'GET',
+				json: true
 			};
 			requestModule(request_obj, function (error, req_response, json) {
-			    if (!error && req_response.statusCode == 200) {
-			    	foodModel.storeRequestTimes(function() {}, function() {});
-			    	// console.log(res);
+				if (!error && req_response.statusCode == 200) {
+					foodModel.storeRequestTimes(function() {}, function() {});
+					// console.log(res);
 					response.render('food/recipe', {kuku: json.recipes[0]});
-			    } else {
-			    	console.log(error);
-			    }
+				} else {
+					console.log(error);
+				}
 			});
 		};
 		let errorCallback = (err) => {
@@ -127,11 +127,51 @@ module.exports = (db) => {
 		foodModel.withApiKey(successCallback, errorCallback);
 	};
 
+
+
+	const createRecipeForm = (request, response) => {
+		if (validateLogin(request)) {
+			response.render('food/createRecipe');
+		} else {
+			response.render('error', {errorMsg: "Log in to create a recipe."});
+		}
+	};
+
+
+
+	const createRecipe = (request, response) => {
+		let id = request.cookies.user;
+		let recipeData = request.body;
+		let successCallback = () => {
+			response.redirect('/');
+		};
+		let errorCallback = (err) => {
+			console.log(err);
+			response.render('error', {errorMsg: err});
+		};
+		foodModel.storeUserRecipe(id, recipeData, successCallback, errorCallback);	
+	};
+
+
+
+	const validateLogin = (request) => {
+		if (request.cookies.logged_in == 'true') {
+			return true;
+		} else {
+			return false;
+		}
+	};
+
+
+
+
 	return {
 		showRecipe: showRecipe,
 		showRandomRecipe: showRandomRecipe,
-        showSearchResults: showSearchResults,
-        loadApiRecipe: loadApiRecipe
+		showSearchResults: showSearchResults,
+		loadApiRecipe: loadApiRecipe,
+		createRecipeForm: createRecipeForm,
+		createRecipe: createRecipe
 	};
 
 

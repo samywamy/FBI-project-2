@@ -8,11 +8,13 @@ module.exports = (app, db) => {
 
 	app.get('/recipe/random', food.showRandomRecipe);
 
-
 	app.post('/recipe/search', food.showSearchResults);
 
-
 	app.get('/recipe/:id/load', food.loadApiRecipe);
+
+	app.get('/recipe/create', food.createRecipeForm);
+
+	app.post('/recipe/create', food.createRecipe);
 };
 
 

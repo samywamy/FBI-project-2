@@ -28,6 +28,6 @@ CREATE TABLE user_saved_recipes (
 	title VARCHAR
 );
 
-ALTER TABLE user_recipes ADD FOREIGN KEY (user_id) REFERENCES users(id); 
+ALTER TABLE user_created_recipes ADD FOREIGN KEY (user_id) REFERENCES users(id); 
 
 ALTER TABLE user_saved_recipes ADD FOREIGN KEY (user_id) REFERENCES users(id);

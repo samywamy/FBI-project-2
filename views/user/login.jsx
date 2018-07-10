@@ -7,13 +7,16 @@ class Login extends React.Component {
     	<LayoutContainer>
 	    	<div>
 	    		<form action="/login" method="POST">
+	    			<br /><br /><br /><br />
+	    			<input name="email" type="text" placeholder="Email" />
 
-	    			<input name="email" type="text" placeholder="email" />
+	    			<input name="password" type="text" placeholder="Password"/>
 
-	    			<input name="password" type="text" placeholder="password"/>
-
-	    			<input name="submit" type="submit" />
+	    			<input name="submit" type="submit" value="Login" class="buttons"/ >
 	    		</form>
+
+	    		<p><a href="/register" class="text-muted">No account? Sign up.</a></p>
+
 	    	</div>
     	</LayoutContainer>
     );

@@ -7,9 +7,9 @@ class Register extends React.Component {
     	<LayoutContainer>
 	    	<div>
 	    		<form action="/register" method="POST">
-	    			<input name="email" type="text" placeholder="email" />
-	    			<input name="password" type="text" placeholder="password"/>
-	    			<input name="submit" type="submit" />
+	    			<input name="email" type="text" placeholder="Email" />
+	    			<input name="password" type="text" placeholder="Password" />
+	    			<input name="submit" type="submit" class="buttons" />
 	    		</form>
 	    	</div>
     	</LayoutContainer>
