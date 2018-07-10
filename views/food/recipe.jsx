@@ -21,6 +21,11 @@ class Recipe extends React.Component {
       <LayoutContainer>
           <div>
             <h1>{this.props.kuku.title}</h1>
+
+            <form action={'/recipe/' + this.props.kuku.id + '/save'} method="GET">
+              <input name="submit" type="submit" value="Save"/>
+            </form>
+
             <img src={this.props.kuku.image} />
             <p>Ready in: {this.props.kuku.readyInMinutes} minutes</p>
             <p>Servings: {this.props.kuku.servings}</p>

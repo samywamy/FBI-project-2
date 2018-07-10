@@ -15,6 +15,10 @@ module.exports = (app, db) => {
 	app.get('/recipe/create', food.createRecipeForm);
 
 	app.post('/recipe/create', food.createRecipe);
+
+	app.get('/recipe/:id/save', food.saveApiRecipe);
+
+	// app.get('/recipe/:id/user/load', food.loadUserRecipe);
 };
 
 

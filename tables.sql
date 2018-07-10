@@ -25,7 +25,9 @@ CREATE TABLE user_created_recipes (
 CREATE TABLE user_saved_recipes (
 	user_id INTEGER,
 	api_id INTEGER,
-	title VARCHAR
+	title VARCHAR,
+	image VARCHAR,
+	json VARCHAR
 );
 
 ALTER TABLE user_created_recipes ADD FOREIGN KEY (user_id) REFERENCES users(id); 

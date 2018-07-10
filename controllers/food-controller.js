@@ -56,7 +56,7 @@ module.exports = (db) => {
 
 
 	const loadApiRecipe = (request, response) => {
-		let id = (request.params.id);
+		let id = request.params.id;
 
 		if (cachedApiRecipes.id !== undefined) {
 			response.render('food/recipe', {kuku: cachedApiRecipes.id});
@@ -170,9 +170,25 @@ module.exports = (db) => {
 
 
 
-	const saveApiRecipe = (request) => {
+	const saveApiRecipe = (request, response) => {
+		let id = (request.params.id);
+		let recipe = cachedApiRecipes[id];
+		let userId = request.cookies.user;
+		let errorCallback = (err) => {
+			response.render('error', {errorMsg: err});
+		};
+		let successCallback = () => {
+			response.redirect('/');
+		};
 
-	}
+		if (userId == undefined) {
+			response.render('user/login');
+		} else if (recipe == undefined) {
+			response.render('error', "Recipe not found.");
+		} else {
+			foodModel.storeApiRecipe(recipe, userId, successCallback, errorCallback);
+		}
+	};
 
 	// const loadUserRecipe = (request) => {
 	// 	let params = request.body;
@@ -190,6 +206,7 @@ module.exports = (db) => {
 		loadApiRecipe: loadApiRecipe,
 		createRecipeForm: createRecipeForm,
 		createRecipe: createRecipe,
+		saveApiRecipe: saveApiRecipe
 		// loadUserRecipe: loadUserRecipe
 	};
 

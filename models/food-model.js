@@ -68,6 +68,23 @@ module.exports = function(db) {
 
 
 
+	const storeApiRecipe = (recipe, userId, successCallback, errorCallback) => {
+
+		const queryString = "INSERT INTO user_saved_recipes (user_id, api_id, title, image, json) VALUES ($1, $2, $3, $4, $5)";
+		const values = [userId, recipe.id, recipe.title, recipe.image, JSON.stringify(recipe)];
+
+		const queryCallback = (err, result) => {
+			if (err) {
+				errorCallback(err);
+			} else {
+				successCallback();
+			}
+		};
+		
+		db.query(queryString, values, queryCallback);		
+	};
+
+
 	// const getUserRecipe = () => {
 	// 	const queryString = 'SELECT * FROM user_created_recipes WHERE user_id = $1';
 	// 	const values = [id];
@@ -90,7 +107,8 @@ module.exports = function(db) {
 		checkApiCalls: checkApiCalls,
 		storeRequestTimes: storeRequestTimes,
 		withApiKey: withApiKey,
-		storeUserRecipe: storeUserRecipe
+		storeUserRecipe: storeUserRecipe,
+		storeApiRecipe: storeApiRecipe
 	};
 
 };
