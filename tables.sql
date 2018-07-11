@@ -10,6 +10,7 @@ CREATE TABLE request_times (
 
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
+    name VARCHAR,
 	email VARCHAR,
     password_hash VARCHAR
 );
@@ -29,6 +30,7 @@ CREATE TABLE user_saved_recipes (
 	image VARCHAR,
 	json VARCHAR
 );
+
 
 ALTER TABLE user_created_recipes ADD FOREIGN KEY (user_id) REFERENCES users(id); 
 

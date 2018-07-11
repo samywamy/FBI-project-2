@@ -43,7 +43,7 @@ class LayoutContainer extends React.Component {
 							</ul>
 							<ul className="navbar-nav mr-right mt-2 mt-lg-0">
 								<li className="nav-item">
-									<a className="nav-link" href="/my-recipes">My Recipes<span className="sr-only">(current)</span></a>
+									<a className="nav-link" href="/profile">My Recipes<span className="sr-only">(current)</span></a>
 								</li>
 								{loginOut}
 							</ul>

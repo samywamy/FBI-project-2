@@ -10,6 +10,6 @@ module.exports = (app, db) => {
 	app.get('/login', users.loginForm);
 	app.post('/login', users.login);
 	app.get('/logout', users.logout);
-
+	app.get('/profile', users.loggedIn);
 
 };

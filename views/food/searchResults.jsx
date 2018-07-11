@@ -3,19 +3,6 @@ var LayoutContainer = require('../layout.jsx');
 
 class SearchResults extends React.Component {
 	render() {
-	 // const tableRows = this.props.kuku.map(recipe => {
-	 //    return (
-	 //        <tr>
-	 //          <td><a href={'/recipe/' + recipe.id + '/load'}><img src={recipe.image} /></a></td>
-	 //          <td><a class ="text-dark" href={'/recipe/' + recipe.id + '/load'}>{recipe.title}</a></td>
-	 //        </tr>
-	 //      );
-	 //  });
-
-// <td><a href={'/recipe/' + recipe.id + '/load'}><img src={recipe.image} /></a></td>
-// <td><a class ="text-dark" href={'/recipe/' + recipe.id + '/load'}>{recipe.title}</a></td>
-
-
 
 	  const recipeCard = this.props.kuku.map(recipe => {
   		return (
@@ -34,7 +21,7 @@ class SearchResults extends React.Component {
 
 	  return (
       <LayoutContainer loggedIn={this.props.loggedIn}>
-        <h1 style={{marginBottom:"20px"}}>Meals made with (ingredients)</h1>
+        <h1 style={{marginBottom:"20px"}}>Meals made with {this.props.ingredients}</h1>
         <div className="search-container">
           <div className="row">
           	{recipeCard}

@@ -12,6 +12,7 @@ module.exports = function(db) {
 
     const register = (request, response) => {
     	let params = request.body;
+        let name = params.name;
         let email = params.email;
         let password = sha256(params.password);
         let successCallback = (result) => {
@@ -21,7 +22,7 @@ module.exports = function(db) {
         let errorCallback = (err) => {
         	console.log('query error:', err.stack);
         };
-        usersModel.addUser(email, password, successCallback, errorCallback);
+        usersModel.addUser(name, email, password, successCallback, errorCallback);
     };
 
 
@@ -34,7 +35,7 @@ module.exports = function(db) {
             response.cookie('logged_in', 'true');
             response.cookie('user', result.rows[0].id);
             console.log('query result:', result);
-            response.redirect('/');        	
+            response.redirect('/profile');        	
         };
         let errorCallback = (err) => {
             response.render('error', {errorMsg: err});
@@ -51,6 +52,24 @@ module.exports = function(db) {
     };
 
 
+    const loggedIn = (request, response) => {
+        let userId = request.cookies.user;
+        let successCallback = (username, userCreatedRecipes, userSavedApiRecipes) => {
+            response.render('user/profile', { username: username,
+                                              createdRecipes: userCreatedRecipes,
+                                              savedRecipes: userSavedApiRecipes });
+        };
+        let errorCallback = (err) => {
+            response.render('error', {errorMsg: err});
+        };
+
+        if (request.cookies.logged_in == 'true') {
+            usersModel.displayProfile(userId, successCallback, errorCallback);
+        } else {
+            response.redirect('/login');
+        }    
+    };
+
 
     const logout = (request, response) => {
         response.clearCookie('user');
@@ -65,7 +84,8 @@ module.exports = function(db) {
         register: register,
         login: login,
         loginForm: loginForm,
-        logout: logout
+        logout: logout,
+        loggedIn: loggedIn
     };
 };
 

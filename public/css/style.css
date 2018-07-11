@@ -1,6 +1,24 @@
 body {
 	background: rgba(66, 244, 220, 0.15);
 	text-align: center;
+	margin: 0 auto;
+	font-size: 15px;
+}
+
+.row {
+	width: 1000px;
+}
+
+.generic-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.search-container {
+	width: 100%;
+	display: flex;
+	justify-content: center;
 }
 
 .text-muted {
@@ -13,7 +31,8 @@ body {
 }
 
 .navbar {
-	margin-bottom: 100px;
+	margin-bottom: 70px;
+	width: 100%;
 }
 
 .nav-link {
@@ -59,10 +78,22 @@ body {
 
 .card {
 	width: 302px;
+	margin: 10px;
+	margin: 0 auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
 .card img {
 	width: 300px;
 	height: 222px;
+	margin: 0 auto;
 }
 
+.form-div {
+	margin: 0 auto;
+}
+
+.create-recipe {
+	width: 800px;
+}
