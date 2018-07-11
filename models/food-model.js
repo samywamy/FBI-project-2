@@ -110,9 +110,39 @@ module.exports = function(db) {
 
 
 
+	const deleteSavedRecipe = (id, userId, successCallback, errorCallback) => {
+
+		const queryString = "DELETE FROM user_saved_recipes WHERE api_id = $1 AND user_id = $2";
+		const values = [id, userId];
+
+		const queryCallback = (err, result) => {
+			if (err) {
+				errorCallback(err);
+            } else {
+                successCallback();
+			}	
+		};
+		
+		db.query(queryString, values, queryCallback);		
+	};
 
 
 
+	const deleteCreatedRecipe = (id, userId, successCallback, errorCallback) => {
+
+		const queryString = "DELETE FROM user_created_recipes WHERE id = $1 AND user_id = $2";
+		const values = [id, userId];
+
+		const queryCallback = (err, result) => {
+			if (err) {
+				errorCallback(err);
+            } else {
+                successCallback();
+			}	
+		};
+		
+		db.query(queryString, values, queryCallback);		
+	};
 
 
 
@@ -122,7 +152,9 @@ module.exports = function(db) {
 		withApiKey: withApiKey,
 		storeUserRecipe: storeUserRecipe,
 		storeApiRecipe: storeApiRecipe,
-		showUserRecipe: showUserRecipe
+		showUserRecipe: showUserRecipe,
+		deleteSavedRecipe: deleteSavedRecipe,
+		deleteCreatedRecipe: deleteCreatedRecipe
 	};
 
 };

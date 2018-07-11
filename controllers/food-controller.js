@@ -22,6 +22,7 @@ module.exports = (db) => {
 		let successCallback = (api_key) => {
 			if (useCache) {
 				response.render('food/searchResults', { kuku: cached.searchResults, 
+														ingredients: searchTerms,
 														loggedIn: request.cookies.logged_in});
 				return;
 			}
@@ -31,7 +32,7 @@ module.exports = (db) => {
 				  'X-Mashape-Key': api_key
 				},
 				uri: 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients' +
-				'?fillIngredients=true&ingredients=' + encodeURIComponent(searchTerms),
+				'?fillIngredients=true&number=100&ingredients=' + encodeURIComponent(searchTerms),
 				method: 'GET',
 				json: true
 			};
@@ -40,6 +41,7 @@ module.exports = (db) => {
 					foodModel.storeRequestTimes(function() {}, function() {});
 					// console.log(res);
 					response.render('food/searchResults', { kuku: json, 
+															ingredients: searchTerms,
 															loggedIn: request.cookies.logged_in});
 				} else {
 					console.log(error);
@@ -214,6 +216,41 @@ module.exports = (db) => {
 
 
 
+	const deleteSavedRecipe = (request, response) => {
+		let id = request.params.id;
+		let userId = request.cookies.user;
+		let errorCallback = (err) => {
+			response.render('error', {errorMsg: err});
+		};
+		let successCallback = () => {
+			response.redirect('/profile');
+		};
+
+		if (userId == undefined) {
+			response.redirect('/login');
+		} else {
+			foodModel.deleteSavedRecipe(id, userId, successCallback, errorCallback);
+		}
+	};
+
+
+	const deleteCreatedRecipe = (request, response) => {
+		let id = request.params.id;
+		let userId = request.cookies.user;
+		let errorCallback = (err) => {
+			response.render('error', {errorMsg: err});
+		};
+		let successCallback = () => {
+			response.redirect('/profile');
+		};
+
+		if (userId == undefined) {
+			response.redirect('/login');
+		} else {
+			foodModel.deleteCreatedRecipe(id, userId, successCallback, errorCallback);
+		}
+	};
+
 
 	return {
 		showRecipe: showRecipe,
@@ -223,7 +260,9 @@ module.exports = (db) => {
 		createRecipeForm: createRecipeForm,
 		createRecipe: createRecipe,
 		saveApiRecipe: saveApiRecipe,
-		loadUserRecipe: loadUserRecipe
+		loadUserRecipe: loadUserRecipe,
+		deleteSavedRecipe: deleteSavedRecipe,
+		deleteCreatedRecipe: deleteCreatedRecipe
 	};
 
 

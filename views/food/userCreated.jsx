@@ -1,12 +1,15 @@
 var React = require('react');
-var LayoutContainer = require('../layout.jsx');
 
 class UserCreated extends React.Component {
   render() {
 
 		const recipe = this.props.userCreatedRecipes.map(recipe => {
 			return (
-				<li class="list-group-item">{recipe.title}</li>
+				<li class="list-group-item">{recipe.title}
+					<form action={'/recipe/created/' + recipe.id + '/delete?_method=DELETE'} method="POST">
+				        <input type="submit" value="DELETE" />
+					</form>
+				</li>
 			);
 		});
 

@@ -13,9 +13,6 @@ module.exports = (app, db) => {
 	app.post('/recipe/create', food.createRecipe);
 	app.get('/recipe/:id/save', food.saveApiRecipe);
 	app.get('/recipe/user/:id', food.loadUserRecipe);
+	app.delete('/recipe/saved/:id/delete', food.deleteSavedRecipe);
+	app.delete('/recipe/created/:id/delete', food.deleteCreatedRecipe);
 };
-
-
-	// app.get('/pokemons', pokes.allPokemon);
-	// app.get('/pokemons/new', pokes.getNew);
-	// app.post('/pokemons', pokes.postPokemon);
