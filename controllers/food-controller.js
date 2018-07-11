@@ -21,7 +21,8 @@ module.exports = (db) => {
 
 		let successCallback = (api_key) => {
 			if (useCache) {
-				response.render('food/searchResults', {kuku: cached.searchResults});
+				response.render('food/searchResults', { kuku: cached.searchResults, 
+														loggedIn: request.cookies.logged_in});
 				return;
 			}
 
@@ -38,7 +39,8 @@ module.exports = (db) => {
 				if (!error && req_response.statusCode == 200) {
 					foodModel.storeRequestTimes(function() {}, function() {});
 					// console.log(res);
-					response.render('food/searchResults', {kuku: json});
+					response.render('food/searchResults', { kuku: json, 
+															loggedIn: request.cookies.logged_in});
 				} else {
 					console.log(error);
 				}
@@ -59,14 +61,14 @@ module.exports = (db) => {
 		let id = request.params.id;
 
 		if (cachedApiRecipes.id !== undefined) {
-			response.render('food/recipe', {kuku: cachedApiRecipes.id});
+			response.render('food/recipe', {kuku: cachedApiRecipes.id, loggedIn: request.cookies.logged_in});
 			return;
 		}
 
 		let successCallback = (api_key) => {
 			if (useCache) {
 				cachedApiRecipes[cached.recipeWithNutrients.id] = cached.recipeWithNutrients;
-				response.render('food/recipe', {kuku: cached.recipeWithNutrients});
+				response.render('food/recipe', {kuku: cached.recipeWithNutrients, loggedIn: request.cookies.logged_in});
 				return;
 			}
 
@@ -82,7 +84,7 @@ module.exports = (db) => {
 				if (!error && req_response.statusCode == 200) {
 					foodModel.storeRequestTimes(function() {}, function() {});
 					cachedApiRecipes[json.id] = json;
-					response.render('food/recipe', {kuku: json});
+					response.render('food/recipe', {kuku: json, loggedIn: request.cookies.logged_in});
 				} else {
 					console.log(error);
 				}
@@ -103,7 +105,7 @@ module.exports = (db) => {
 		let successCallback = (api_key) => {
 			if (useCache) {
 				cachedApiRecipes[cached.randomRecipe.recipes[0].id] = cached.randomRecipe.recipes[0];
-				response.render('food/recipe', {kuku: cached.randomRecipe.recipes[0]});
+				response.render('food/recipe', {kuku: cached.randomRecipe.recipes[0], loggedIn: request.cookies.logged_in});
 				return;
 			}
 
@@ -179,7 +181,7 @@ module.exports = (db) => {
 			response.render('error', {errorMsg: err});
 		};
 		let successCallback = () => {
-			response.redirect('/'); //CHANGE THIS TO profile
+			response.redirect('/'); //CHANGE THIS TO search results
 		};
 
 		if (userId == undefined) {

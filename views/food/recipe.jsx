@@ -18,12 +18,12 @@ class Recipe extends React.Component {
     });  
 
     return (
-      <LayoutContainer>
+      <LayoutContainer loggedIn={this.props.loggedIn}>
           <div>
             <h1>{this.props.kuku.title}</h1>
 
             <form action={'/recipe/' + this.props.kuku.id + '/save'} method="GET">
-              <input name="submit" type="submit" value="Save"/>
+              <input name="submit" type="submit" value="Save" class="btn btn-danger"/>
             </form>
 
             <img src={this.props.kuku.image} />
