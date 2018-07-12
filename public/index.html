@@ -12,49 +12,50 @@
 </head>
 
 <body>
+    <div class="boss-container">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#toggler">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="toggler">
+                <!-- <a class="navbar-brand" href="#">Recipes</a> -->
+                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Search<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/recipe/random">Random</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/recipe/create">Create</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav mr-right mt-2 mt-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/profile">My Recipes<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#toggler">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="toggler">
-<!--             <a class="navbar-brand" href="#">Recipes</a>
- -->            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" href="/">Search<span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/recipe/random">Random</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/recipe/create">Create</a>
-                </li>
-            </ul>
-            <ul class="navbar-nav mr-right mt-2 mt-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" href="/profile">My Recipes<span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/login">Login</a>
-                </li>
-            </ul>
+
+
+        <div class="container-fluid">
+            <div class="search-title">find by ingredients</div>
+            <form class="search-form" method="POST" action="/recipe/search">
+                <input id="search-bar" name="searchbar" type="text" placeholder="Eg. eggs,ham,spinach">
+                <button id="search-button" type="submit"><i class="fa fa-search"></i></button>
+            </form>
+
+            <br>
+            <br>
+
         </div>
-    </nav>
-
-
-    <div class="container-fluid">
-        <h1 class="search-title">find by ingredients</h1>
-        <form method="POST" action="/recipe/search">
-            <input id="search-bar" name="searchbar" type="text" placeholder="Eg. eggs,ham,spinach">
-            <button id="search-button" type="submit"><i class="fa fa-search"></i></button>
-        </form>
-        <br>
-        <br>
-<!--         <form method="GET" action="/recipe/random">
-            <button type="submit" id="random-button" class="btn btn-outline-danger">Random Recipe</button>
-        </form>
- -->        <div id="recipes"></div>
     </div>
+
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>

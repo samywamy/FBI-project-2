@@ -13,23 +13,24 @@ class Profile extends React.Component {
     	<LayoutContainer loggedIn="true">
 
 
-			<div className="container">
-{/*				<div class="row">
-					Row
-				</div>
-*/}
-				<div className="row">
+			<div class="container">
 
-					<div className="col-sm">
-				  		<h1>Hello {this.props.username}</h1>
+				<div class="row">
+
+					<div class="col-sm">
+						<h1>Hello, {this.props.username}</h1>
+						<br />
+						<form action="/logout" method="GET">
+						  <input name="submit" type="submit" value="Logout" class="btn btn-dark" />
+						</form>
 					</div>
 
-					<div className="col-sm">
+					<div class="col-sm">
 					  	<h4>Saved Recipes</h4>
 					  	<UserSaved userSavedApiRecipes={this.props.savedRecipes} />
 					</div>
 
-					<div className="col-sm">
+					<div class="col-sm">
 						<h4>Created Recipes</h4>
 						<UserCreated userCreatedRecipes={this.props.createdRecipes} />
 					</div>
@@ -39,20 +40,6 @@ class Profile extends React.Component {
 
 
 
-
-
-
-
-
-    		<div className="generic-container">
-	    	<div className="form-div" style={{width:"500px"}}>
-	    		<div style={{margin:"50px"}}>
-				<form action="/logout" method="GET">
-				  <input name="submit" type="submit" value="Logout" className="btn btn-dark" />
-				</form>
-				</div>
-	    	</div>
-	    </div>	
     	</LayoutContainer>
     );
 

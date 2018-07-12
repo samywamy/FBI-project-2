@@ -1,12 +1,27 @@
 body {
-	background: rgba(66, 244, 220, 0.15);
+	background: white;
 	text-align: center;
 	margin: 0 auto;
 	font-size: 15px;
 }
 
+.boss-container {
+	height: 100vh;
+	background-image: url("/assets/hero.jpg");
+	background-repeat: no-repeat;	
+	background-size: cover;
+}
+
+.container-fluid {
+	margin-top: 160px;
+	height: 250px;
+	background-color: rgba(0,0,0, 0.4);
+
+}
+
 .row {
 	width: 1000px;
+	margin: 0 auto;
 }
 
 .generic-container {
@@ -15,19 +30,9 @@ body {
 	align-items: center;
 }
 
-.search-container {
-	width: 100%;
-	display: flex;
-	justify-content: center;
-}
-
 .text-muted {
 	font-size: 12px;
 	text-decoration: underline;
-}
-
-.buttons {
-	cursor: pointer;
 }
 
 .navbar {
@@ -40,22 +45,27 @@ body {
 	font-weight: 200;
 }
 
-.container-fluid {
-	width: 600px;
+.search-form {
+	width: 580px;
+	margin: 0 auto;
+	margin-top: 28px;
 }
 
 .search-title {
 	font-family: 'Pacifico', cursive;
-	padding: 20px;
+	color: #aafffc;
+	text-shadow: 2px 2px #000000;
+	font-size: 77px;
+	padding: 12px;
 }
 
 #search-bar {
 	padding: 10px;
     font-size: 17px;
-    border: 1px solid grey;
+    border: 1px solid black;
     float: left;
     width: 90%;
-    height: 40px;
+    height: 50px;
 }
 
 #search-bar:not(:focus) {
@@ -66,12 +76,12 @@ body {
 #search-button {
 	float: left;
     width: 10%;
-    height: 40px;
+    height: 50px;
     padding: 10px;
     background: pink;
     color: white;
     font-size: 17px;
-    border: 1px solid grey;
+    border: 1px solid black;
     border-left: none;
     cursor: pointer;
 }
@@ -96,4 +106,8 @@ body {
 
 .create-recipe {
 	width: 800px;
+}
+
+.col-sm {
+	margin: 0 auto;
 }

@@ -1,7 +1,7 @@
 module.exports = (db) => {
 
 	const cached = require('./cachedapicalls.js')();
-	const useCache = true;
+	const useCache = false;
 	const requestModule = require('request');
 	const foodModel = require('../models/food-model.js')(db);
 	const cachedApiRecipes = {};
@@ -62,8 +62,8 @@ module.exports = (db) => {
 	const loadApiRecipe = (request, response) => {
 		let id = request.params.id;
 
-		if (cachedApiRecipes.id !== undefined) {
-			response.render('food/recipe', {kuku: cachedApiRecipes.id, loggedIn: request.cookies.logged_in});
+		if (cachedApiRecipes[id] !== undefined) {
+			response.render('food/recipe', {kuku: cachedApiRecipes[id], loggedIn: request.cookies.logged_in});
 			return;
 		}
 

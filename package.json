@@ -2,9 +2,10 @@
   "name": "project-2",
   "version": "1.0.0",
   "description": "Recipe App",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
   },
   "author": "Samantha Ng",
   "license": "ISC",
@@ -23,5 +24,9 @@
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "request": "^2.87.0"
-  }
+  },
+
+  "engines" : {
+    "node" : "^10.2.1"
+  }, 
 }

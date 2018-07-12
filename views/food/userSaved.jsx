@@ -5,9 +5,9 @@ class UserSaved extends React.Component {
 
 		const recipe = this.props.userSavedApiRecipes.map(recipe => {
 			return (
-				<li class="list-group-item">{recipe.title}
+				<li class="list-group-item"><a class="text-dark" href={'/recipe/' + recipe.api_id}>{recipe.title}</a>
 					<form action={'/recipe/saved/' + recipe.api_id + '/delete?_method=DELETE'} method="POST">
-				        <input type="submit" value="DELETE" />
+				        <input type="submit" value="Delete" class="btn btn-dark" style={{fontSize: "12px"}}/>
 					</form>
 				</li>
 			);
