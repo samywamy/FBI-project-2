@@ -14,8 +14,6 @@ const db = require('./db');
 const app = express();
 
 
-
-
 // Set up middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "start": "node index.js"
   },
   "author": "Samantha Ng",
   "license": "ISC",
@@ -25,8 +25,7 @@
     "react-dom": "^16.4.1",
     "request": "^2.87.0"
   },
-
   "engines" : {
     "node" : "^10.2.1"
-  }, 
+    }
 }
