@@ -16,8 +16,10 @@ module.exports = function(db) {
         let email = params.email;
         let password = sha256(params.password);
         let successCallback = (result) => {
+            response.cookie('logged_in', 'true');
+            response.cookie('user', result.rows[0].id);
             console.log('query result:', result);
-            response.redirect('/login');        	
+            response.redirect('/profile');        	
         };
         let errorCallback = (err) => {
         	console.log('query error:', err.stack);
