@@ -153,7 +153,7 @@ module.exports = (db) => {
 		let id = request.cookies.user;
 		let recipeData = request.body;
 		let successCallback = () => {
-			response.redirect('/');
+			response.redirect('/profile');
 		};
 		let errorCallback = (err) => {
 			console.log(err);
@@ -249,8 +249,41 @@ module.exports = (db) => {
 		} else {
 			foodModel.deleteCreatedRecipe(id, userId, successCallback, errorCallback);
 		}
-	};
+    };
+    
 
+    const loadEditUserRecipe = (request, response) => {
+        let id = request.params.id;
+        let userId = request.cookies.user;
+		let errorCallback = (err) => {
+			response.render('error', {errorMsg: err});
+		};
+		let successCallback = (result) => {
+			response.render('food/editRecipe', {kuku: result});
+        };    
+		if (userId == undefined) {
+			response.render('user/login');
+		} else {
+			foodModel.showUserRecipe(id, userId, successCallback, errorCallback);
+		}        
+    };
+
+
+    const editUserRecipe = (request, response) => {
+        let recipeId = request.params.id;
+        let userId = request.cookies.user;
+        let recipeData = request.body; // { title: ..., ingredients: ...., steps: ... }
+		let successCallback = () => {
+			response.redirect('/recipe/user/' + recipeId);
+		};
+		let errorCallback = (err) => {
+			console.log(err);
+			response.render('error', {errorMsg: err});
+        };		
+        foodModel.editUserRecipe(userId, recipeId, recipeData, successCallback, errorCallback);
+    };
+
+    
 
 	return {
 		showRecipe: showRecipe,
@@ -262,7 +295,9 @@ module.exports = (db) => {
 		saveApiRecipe: saveApiRecipe,
 		loadUserRecipe: loadUserRecipe,
 		deleteSavedRecipe: deleteSavedRecipe,
-		deleteCreatedRecipe: deleteCreatedRecipe
+        deleteCreatedRecipe: deleteCreatedRecipe,
+        loadEditUserRecipe: loadEditUserRecipe,
+        editUserRecipe: editUserRecipe
 	};
 
 

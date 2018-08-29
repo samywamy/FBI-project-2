@@ -14,5 +14,7 @@ module.exports = (app, db) => {
 	app.get('/recipe/:id/save', food.saveApiRecipe);
 	app.get('/recipe/user/:id', food.loadUserRecipe);
 	app.delete('/recipe/saved/:id/delete', food.deleteSavedRecipe);
-	app.delete('/recipe/created/:id/delete', food.deleteCreatedRecipe);
+    app.delete('/recipe/created/:id/delete', food.deleteCreatedRecipe);
+    app.get('/recipe/user/:id/edit', food.loadEditUserRecipe);
+    app.put('/recipe/user/:id/update', food.editUserRecipe);
 };

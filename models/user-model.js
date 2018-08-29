@@ -2,7 +2,7 @@ module.exports = function(db) {
 
     const addUser = (name, email, password, successCallback, errorCallback) => {
 
-        const queryString = 'INSERT INTO users(name, email, password_hash) VALUES($1, $2, $3)';
+        const queryString = 'INSERT INTO users(name, email, password_hash) VALUES($1, $2, $3) RETURNING id';
         const values = [name, email, password];
 
         db.query(queryString, values, (err, result) => {

@@ -146,6 +146,24 @@ module.exports = function(db) {
 
 
 
+	const editUserRecipe = (userId, recipeId, recipeData, successCallback, errorCallback) => {
+
+        const queryString = "UPDATE user_created_recipes SET title = $3, ingredients = $4, directions = $5 WHERE user_id = $1 AND id = $2";
+        const values = [userId, recipeId, recipeData.title, recipeData.ingredients, recipeData.steps];
+        
+		const queryCallback = (err, result) => {
+			if (err) {
+				errorCallback(err);
+			} else {
+				successCallback();
+			}
+		};
+		
+		db.query(queryString, values, queryCallback);		
+    };
+    
+
+
 	return {
 		checkApiCalls: checkApiCalls,
 		storeRequestTimes: storeRequestTimes,
@@ -154,7 +172,8 @@ module.exports = function(db) {
 		storeApiRecipe: storeApiRecipe,
 		showUserRecipe: showUserRecipe,
 		deleteSavedRecipe: deleteSavedRecipe,
-		deleteCreatedRecipe: deleteCreatedRecipe
+        deleteCreatedRecipe: deleteCreatedRecipe,
+        editUserRecipe: editUserRecipe
 	};
 
 };
