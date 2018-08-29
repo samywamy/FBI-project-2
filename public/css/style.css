@@ -14,9 +14,12 @@ body {
 
 .container-fluid {
 	margin-top: 160px;
-	height: 250px;
+	height: 300px;
 	background-color: rgba(0,0,0, 0.4);
+}
 
+.container {
+    margin-bottom: 100px;
 }
 
 .row {
@@ -27,7 +30,8 @@ body {
 .generic-container {
 	display: flex;
 	justify-content: center;
-	align-items: center;
+    align-items: center;
+    margin-bottom: 100px;
 }
 
 .text-muted {
@@ -42,7 +46,8 @@ body {
 
 .nav-link {
 	color: #f7f7f7 !important;
-	font-weight: 200;
+    font-weight: 200;
+    letter-spacing: 1.5px;
 }
 
 .search-form {
@@ -54,9 +59,18 @@ body {
 .search-title {
 	font-family: 'Pacifico', cursive;
 	color: #aafffc;
-	text-shadow: 2px 2px #000000;
+    text-shadow: 2px 2px #000000;
+    letter-spacing: 3px;
 	font-size: 77px;
 	padding: 12px;
+}
+
+.search-liner {
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 300;
+    letter-spacing: 2px;
+
 }
 
 #search-bar {
@@ -110,4 +124,9 @@ body {
 
 .col-sm {
 	margin: 0 auto;
+}
+
+.profile-edit-button {
+    margin-right: 10px;
+    font-size: 12px;
 }
