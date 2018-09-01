@@ -4,7 +4,7 @@ var LayoutContainer = require('../layout.jsx');
 class createRecipe extends React.Component {
   render() {
       return (
-        <LayoutContainer>
+        <LayoutContainer loggedIn="true">
 
           <div class="generic-container">
             <div class="form-div" style={{width:"800px"}}>

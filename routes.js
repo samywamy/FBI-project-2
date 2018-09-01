@@ -1,11 +1,18 @@
 module.exports = (app, db) => {
 
-	const user_routes = require('./routes/user-routes.js')(app, db);
-	const food_routes = require('./routes/food-routes.js')(app, db);
- //    const pageNotFound = (request, response) => {
- //    	response.status(404);
- //    	response.render('404');
- //    };
+    const user_routes = require('./routes/user-routes.js')(app, db);
+    const food_routes = require('./routes/food-routes.js')(app, db);
+    //    const pageNotFound = (request, response) => {
+    //    	response.status(404);
+    //    	response.render('404');
+    //    };
 
-	// app.get('*', pageNotFound);
+    // app.get('*', pageNotFound);
+
+    const homeFunction = (request, response) => {
+        response.render('home', {loggedIn: request.cookies.logged_in});
+    };
+
+    app.get('/', homeFunction);
+
 };

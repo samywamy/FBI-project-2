@@ -1,4 +1,5 @@
 var React = require('react');
+var LayoutContainer = require('../layout.jsx');
 
 class UserCreated extends React.Component {
   render() {

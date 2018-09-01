@@ -6,7 +6,7 @@ class UserRecipe extends React.Component {
 
 
     return (
-      <LayoutContainer>
+      <LayoutContainer loggedIn="true">
           <div class="container">
             <h1>Title: {this.props.kuku.title}</h1>
             <p>Ingredients: {this.props.kuku.ingredients}</p>

@@ -123,14 +123,14 @@ module.exports = (db) => {
 				if (!error && req_response.statusCode == 200) {
 					foodModel.storeRequestTimes(function() {}, function() {});
 					cachedApiRecipes[json.recipes[0].id] = json.recipes[0];
-					response.render('food/recipe', {kuku: json.recipes[0]});
+					response.render('food/recipe', {kuku: json.recipes[0], loggedIn: request.cookies.logged_in});
 				} else {
-					console.log(error);
+					console.log('http request error: ' + error);
 				}
 			});
 		};
 		let errorCallback = (err) => {
-			console.log(err);
+			console.log('controller error: ' + err);
 			response.render('error', {errorMsg: err});
 		};
 
@@ -183,7 +183,7 @@ module.exports = (db) => {
 			response.render('error', {errorMsg: err});
 		};
 		let successCallback = () => {
-			response.redirect('/'); //CHANGE THIS TO search results
+			response.redirect('/profile'); //CHANGE THIS TO search results
 		};
 
 		if (userId == undefined) {
